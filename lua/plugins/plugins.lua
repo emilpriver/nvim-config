@@ -5,7 +5,10 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 return {
-  { "catppuccin/nvim" },
+  -- themes
+  { "olimorris/onedarkpro.nvim" },
+  { "sainnhe/everforest" },
+  { "catppuccin/nvim", name = "catppuccin" },
 
   -- Configure LazyVim to load gruvbox
   {
@@ -14,6 +17,38 @@ return {
       colorscheme = "catppuccin-frappe",
     },
   },
+
+  -- context
+  { "nvim-treesitter/nvim-treesitter-context" },
+
+  -- disable notify
+  {
+    "rcarriga/nvim-notify",
+    enabled = false,
+  },
+
+  -- Disable Noice
+  {
+    "folke/noice.nvim",
+    enabled = false,
+  },
+
+  -- Elixir
+  "mhanberg/elixir.nvim",
+  "elixir-editors/vim-elixir",
+
+  -- Golang functions
+  "ray-x/go.nvim",
+  "fatih/vim-go",
+
+  -- Git
+  {
+    "akinsho/git-conflict.nvim",
+    config = function()
+      require("git-conflict").setup()
+    end,
+  },
+  { "f-person/git-blame.nvim" },
 
   -- override nvim-cmp and add cmp-emoji
   {
@@ -49,6 +84,8 @@ return {
         pyright = {},
         rust_analyzer = {},
         terraformls = {},
+        gopls = {},
+        csharp_ls = {},
       },
     },
   },
@@ -72,7 +109,6 @@ return {
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},
-        rust_analyzer = {},
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig
@@ -209,6 +245,16 @@ return {
           end
         end, { "i", "s" }),
       })
+    end,
+  },
+
+  -- rust crates
+  {
+    "saecki/crates.nvim",
+    tag = "v0.3.0",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("crates").setup()
     end,
   },
 }
