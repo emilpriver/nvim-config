@@ -4,6 +4,7 @@
 -- * add extra plugins
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
+
 return {
   -- themes
   { "olimorris/onedarkpro.nvim" },
@@ -50,6 +51,9 @@ return {
   },
   { "f-person/git-blame.nvim" },
 
+  -- Zig
+  { "ziglang/zig.vim" },
+
   -- override nvim-cmp and add cmp-emoji
   {
     "hrsh7th/nvim-cmp",
@@ -86,6 +90,7 @@ return {
         terraformls = {},
         gopls = {},
         csharp_ls = {},
+        zls = {},
       },
     },
   },
