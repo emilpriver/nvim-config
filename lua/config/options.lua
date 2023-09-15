@@ -3,3 +3,5 @@
 -- Add any additional options here
 --
 vim.g.everforest_background = "soft"
+
+vim.lsp.buf.inlay_hint(0)

@@ -27,6 +27,10 @@ return {
     "rcarriga/nvim-notify",
     enabled = false,
   },
+  -- Svelte
+  { "evanleck/vim-svelte" },
+  { "pangloss/vim-javascript" },
+  { "HerringtonDarkholme/yats.vim" },
 
   -- Disable Noice
   {
@@ -84,13 +88,17 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          cargo = {
+            features = { "ssr" },
+          },
+        },
         terraformls = {},
         gopls = {},
         csharp_ls = {},
         zls = {},
+        marksman = {},
       },
     },
   },
@@ -260,6 +268,15 @@ return {
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require("crates").setup()
+    end,
+  },
+  -- Preview
+  {
+    "rmagatti/goto-preview",
+    config = function()
+      require("goto-preview").setup({
+        default_mappings = true,
+      })
     end,
   },
 }
