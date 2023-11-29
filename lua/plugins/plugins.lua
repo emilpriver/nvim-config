@@ -263,4 +263,8 @@ return {
       })
     end,
   },
+
+  {
+    "gleam-lang/gleam.vim",
+  },
 }
