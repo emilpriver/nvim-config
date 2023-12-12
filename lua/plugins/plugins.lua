@@ -100,6 +100,9 @@ return {
         tsserver = {},
         zls = {},
         marksman = {},
+        ocamllsp = {
+          mason = false,
+        },
       },
       setup = {
         -- example to setup with typescript.nvim
