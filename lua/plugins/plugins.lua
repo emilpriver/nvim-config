@@ -270,9 +270,21 @@ return {
   -- Use your favorite package manager to install, for example in lazy.nvim
   --  Optionally, you can also install nvim-telescope/telescope.nvim to use some search functionality.
   {
+    enabled = false,
     "sourcegraph/sg.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
     },
+  },
+
+  {
+    "zbirenbaum/copilot.lua",
+  },
+
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
   },
 }
