@@ -53,6 +53,7 @@ return {
       require("git-conflict").setup()
     end,
   },
+
   { "f-person/git-blame.nvim" },
 
   -- Zig
