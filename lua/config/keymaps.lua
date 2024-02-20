@@ -4,3 +4,4 @@
 --
 -- This file is automatically loaded by lazyvim.config.initial
 --
+-- This file is automatically loaded by lazyvim.config.init

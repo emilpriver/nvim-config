@@ -315,10 +315,15 @@ return {
   },
 
   {
+    enabled = true,
     "sourcegraph/sg.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+      "nvim-telescope/telescope.nvim",
     },
+    keys = { { "<leader>cs", "<cmd>SourcegraphSearch<cr>", desc = "Sourcegraph search" } },
+    config = function()
+      require("sg").setup({})
+    end,
   },
 
   {
