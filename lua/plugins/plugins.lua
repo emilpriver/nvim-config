@@ -329,4 +329,6 @@ return {
   {
     "ocaml/vim-ocaml",
   },
+
+  "reasonml-editor/vim-reason-plus",
 }
