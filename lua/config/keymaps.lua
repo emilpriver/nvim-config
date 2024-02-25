@@ -5,3 +5,7 @@
 -- This file is automatically loaded by lazyvim.config.initial
 --
 -- This file is automatically loaded by lazyvim.config.init
+--
+
+local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = "Hover types" }
+vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, bufopts)
