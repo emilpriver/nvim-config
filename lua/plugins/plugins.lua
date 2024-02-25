@@ -15,7 +15,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "deep-space",
     },
   },
 
@@ -331,4 +331,6 @@ return {
   },
 
   "reasonml-editor/vim-reason-plus",
+
+  "tyrannicaltoucan/vim-deep-space",
 }
