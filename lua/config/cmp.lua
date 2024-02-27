@@ -18,9 +18,6 @@ cmp.setup({
     end),
   },
   sources = {
-    -- Copilot Source
-    { name = "copilot", group_index = 2 },
-    -- Other Sources
     { name = "emoji", group_index = 2 },
     { name = "buffer", group_index = 2 },
     { name = "path", group_index = 2 },
