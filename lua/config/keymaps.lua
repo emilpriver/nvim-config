@@ -9,3 +9,15 @@
 
 local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = "Hover types" }
 vim.keymap.set("n", "<leader>ch", vim.lsp.buf.hover, bufopts)
+vim.keymap.set(
+  "n",
+  "<leader>cg",
+  "<cmd>lua vim.lsp.buf.declaration()<CR>",
+  { noremap = true, silent = true, desc = "Jump to declaration" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>cG",
+  "<cmd>lua vim.lsp.buf.definition()<CR>",
+  { noremap = true, silent = true, desc = "Jump to definition" }
+)
