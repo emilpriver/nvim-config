@@ -319,4 +319,6 @@ return {
   "reasonml-editor/vim-reason-plus",
 
   "tyrannicaltoucan/vim-deep-space",
+
+  "gleam-lang/gleam.vim",
 }
