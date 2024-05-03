@@ -15,7 +15,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-frappe",
+      colorscheme = "everforest",
     },
   },
 
@@ -264,6 +264,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     event = "InsertEnter",
+    enabled = false,
     config = function()
       require("copilot").setup({
         panel = {
@@ -321,4 +322,24 @@ return {
   "tyrannicaltoucan/vim-deep-space",
 
   "gleam-lang/gleam.vim",
+
+  "shaunsingh/nord.nvim",
+
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    dependencies = {
+      { "tpope/vim-dadbod", lazy = true },
+      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+    },
+    cmd = {
+      "DBUI",
+      "DBUIToggle",
+      "DBUIAddConnection",
+      "DBUIFindBuffer",
+    },
+    init = function()
+      -- Your DBUI configuration
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
 }
