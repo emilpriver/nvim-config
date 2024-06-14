@@ -7,6 +7,7 @@
 
 return {
   -- themes
+  { "ellisonleao/gruvbox.nvim" },
   { "olimorris/onedarkpro.nvim" },
   { "sainnhe/everforest" },
   { "catppuccin/nvim", name = "catppuccin" },
@@ -342,4 +343,28 @@ return {
       vim.g.db_ui_use_nerd_fonts = 1
     end,
   },
+
+  {
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("chatgpt").setup({
+        defaults = {
+          openai_params = {
+            model = "GPT-4o",
+          },
+        },
+      })
+    end,
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "folke/trouble.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+  },
+
+  "othree/html5.vim",
+  "pangloss/vim-javascript",
+  "evanleck/vim-svelte",
 }
