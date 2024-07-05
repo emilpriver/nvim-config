@@ -367,4 +367,12 @@ return {
   "othree/html5.vim",
   "pangloss/vim-javascript",
   "evanleck/vim-svelte",
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 }
