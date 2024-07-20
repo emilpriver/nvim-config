@@ -78,7 +78,6 @@ return {
     },
   },
 
-  -- add pyright to lspconfig
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -93,7 +92,9 @@ return {
         tsserver = {},
         zls = {},
         marksman = {},
-        ocamllsp = {},
+        ocamllsp = {
+          mason = false,
+        },
       },
       setup = {
         -- example to setup with typescript.nvim
