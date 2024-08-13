@@ -95,6 +95,7 @@ return {
         ocamllsp = {
           mason = false,
         },
+        gleam = {},
       },
       setup = {
         -- example to setup with typescript.nvim
