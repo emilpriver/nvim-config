@@ -381,4 +381,8 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
+
+  {
+    "tribela/vim-transparent",
+  },
 }
