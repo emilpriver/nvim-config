@@ -382,7 +382,6 @@ return {
     end,
   },
 
-  {
-    "tribela/vim-transparent",
-  },
+  "tribela/vim-transparent",
+  "adalessa/laravel.nvim",
 }
