@@ -356,7 +356,10 @@ return {
       require("chatgpt").setup({
         defaults = {
           openai_params = {
-            model = "GPT-4o",
+            model = "gpt-4o-preview",
+          },
+          openai_edit_params = {
+            model = "gpt-4o-preview",
           },
         },
       })
@@ -381,7 +384,4 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
-
-  "tribela/vim-transparent",
-  "adalessa/laravel.nvim",
 }
