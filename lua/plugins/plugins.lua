@@ -10,13 +10,12 @@ return {
   { "ellisonleao/gruvbox.nvim" },
   { "olimorris/onedarkpro.nvim" },
   { "sainnhe/everforest" },
-  { "catppuccin/nvim", name = "catppuccin" },
 
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everforest",
+      colorscheme = "catppuccin-frappe",
     },
   },
 
@@ -96,6 +95,9 @@ return {
           mason = false,
         },
         gleam = {},
+        golangci_lint_ls = {
+          cmd = { "golangci-lint", "run", "--out-format", "json" },
+        },
       },
       setup = {
         -- example to setup with typescript.nvim
@@ -384,4 +386,5 @@ return {
       vim.fn["mkdp#util#install"]()
     end,
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
