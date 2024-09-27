@@ -87,7 +87,6 @@ return {
         rust_analyzer = {},
         terraformls = {},
         gopls = {},
-        csharp_ls = {},
         tsserver = {},
         zls = {},
         marksman = {},
