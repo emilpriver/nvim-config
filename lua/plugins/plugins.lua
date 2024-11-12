@@ -91,6 +91,7 @@ return {
         zls = {},
         marksman = {},
         ocamllsp = {
+          cmd = { "ocamllsp" },
           mason = false,
         },
         gleam = {},
