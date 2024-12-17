@@ -19,6 +19,13 @@ return {
     },
   },
 
+  {
+    "snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+    },
+  },
+
   -- context
   { "nvim-treesitter/nvim-treesitter-context" },
 
@@ -435,5 +442,14 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
+  },
+
+  {
+    "oysandvik94/curl.nvim",
+    cmd = { "CurlOpen" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = true,
   },
 }
