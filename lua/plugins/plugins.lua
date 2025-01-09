@@ -402,17 +402,14 @@ return {
     version = false, -- set this if you want to always pull the latest change
     opts = {
       provider = "gemini",
-      auto_suggestions_provider = "gemini",
     },
     gemini = {
       model = "gemini-2.0-flash-exp",
-      timeout = 30000, -- Timeout in milliseconds
+      timeout = 30000,
       temperature = 0,
       max_tokens = 4096,
     },
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "stevearc/dressing.nvim",
