@@ -400,14 +400,15 @@ return {
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
+    provider = "gemini",
     opts = {
       provider = "gemini",
-    },
-    gemini = {
-      model = "gemini-2.0-flash-exp",
-      timeout = 30000,
-      temperature = 0,
-      max_tokens = 4096,
+      gemini = {
+        model = "gemini-1.5-pro",
+        timeout = 30000, -- Timeout in milliseconds
+        temperature = 0,
+        max_tokens = 4096,
+      },
     },
     build = "make",
     dependencies = {
