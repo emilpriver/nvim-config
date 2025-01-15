@@ -358,29 +358,6 @@ return {
     end,
   },
 
-  {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("chatgpt").setup({
-        defaults = {
-          openai_params = {
-            model = "gpt-4o-preview",
-          },
-          openai_edit_params = {
-            model = "gpt-4o-preview",
-          },
-        },
-      })
-    end,
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "folke/trouble.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-  },
-
   "othree/html5.vim",
   "pangloss/vim-javascript",
   "evanleck/vim-svelte",
@@ -404,7 +381,7 @@ return {
     opts = {
       provider = "gemini",
       gemini = {
-        model = "gemini-1.5-pro",
+        model = "gemini-2.0-flash-exp",
         timeout = 30000, -- Timeout in milliseconds
         temperature = 0,
         max_tokens = 4096,
