@@ -96,6 +96,7 @@ return {
         gopls = {},
         tsserver = {},
         zls = {},
+        postgres_lsp = {},
         marksman = {},
         ocamllsp = {
           cmd = { "ocamllsp" },
