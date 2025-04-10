@@ -382,7 +382,7 @@ return {
     opts = {
       provider = "gemini",
       gemini = {
-        model = "gemini-2.0-flash",
+        model = "gemini-2.5-pro-preview-03-25",
         timeout = 30000,
         temperature = 0,
         max_tokens = 4096,
