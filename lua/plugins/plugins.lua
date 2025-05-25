@@ -129,10 +129,6 @@ return {
     },
   },
 
-  -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
-  -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-  { import = "lazyvim.plugins.extras.lang.typescript" },
-
   -- add more treesitter parsers
   {
     "nvim-treesitter/nvim-treesitter",
@@ -382,9 +378,9 @@ return {
     opts = {
       provider = "gemini",
       gemini = {
-        model = "gemini-2.5-flash-preview-04-17",
+        model = "gemini-2.5-pro-preview-05-06",
         timeout = 30000,
-        temperature = 0,
+        temperature = 1,
         max_tokens = 4096,
       },
     },
