@@ -104,7 +104,12 @@ return {
         },
         gleam = {},
         golangci_lint_ls = {
-          cmd = { "golangci-lint", "run", "--out-format", "json" },
+          cmd = {
+            "golangci-lint",
+            "run",
+            "--out-format",
+            "json",
+          },
         },
       },
       setup = {
@@ -120,11 +125,18 @@ return {
     dependencies = {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
-        require("lazyvim.util").lsp.on_attach(function(_, buffer)
+        require("lazyvim.util").lsp.on_attach(
+          function(_, buffer)
           -- stylua: ignore
           vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
-          vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
-        end)
+            vim.keymap.set(
+              "n",
+              "<leader>cR",
+              "TypescriptRenameFile",
+              { desc = "Rename File", buffer = buffer }
+            )
+          end
+        )
       end,
     },
   },
@@ -216,8 +228,14 @@ return {
     opts = function(_, opts)
       local has_words_before = function()
         unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        local line, col =
+          unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0
+          and vim.api
+              .nvim_buf_get_lines(0, line - 1, line, true)[1]
+              :sub(col, col)
+              :match("%s")
+            == nil
       end
 
       local luasnip = require("luasnip")
@@ -319,7 +337,13 @@ return {
     dependencies = {
       "nvim-telescope/telescope.nvim",
     },
-    keys = { { "<leader>cs", "<cmd>SourcegraphSearch<cr>", desc = "Sourcegraph search" } },
+    keys = {
+      {
+        "<leader>cs",
+        "<cmd>SourcegraphSearch<cr>",
+        desc = "Sourcegraph search",
+      },
+    },
     config = function()
       require("sg").setup({})
     end,
@@ -341,7 +365,11 @@ return {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
       { "tpope/vim-dadbod", lazy = true },
-      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true },
+      {
+        "kristijanhusak/vim-dadbod-completion",
+        ft = { "sql", "mysql", "plsql" },
+        lazy = true,
+      },
     },
     cmd = {
       "DBUI",
@@ -361,13 +389,21 @@ return {
 
   {
     "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    cmd = {
+      "MarkdownPreviewToggle",
+      "MarkdownPreview",
+      "MarkdownPreviewStop",
+    },
     ft = { "markdown" },
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
   },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+  },
 
   {
     "yetone/avante.nvim",
@@ -378,7 +414,7 @@ return {
     opts = {
       provider = "gemini",
       gemini = {
-        model = "gemini-2.5-pro-preview-05-06",
+        model = "gemini-2.5-pro",
         timeout = 30000,
         temperature = 1,
         max_tokens = 4096,
