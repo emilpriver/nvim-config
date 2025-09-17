@@ -5,6 +5,8 @@
 -- * disable/enabled LazyVim plugins
 -- * override the configuration of LazyVim plugins
 
+local lspconfig = require("lspconfig")
+
 return {
   -- themes
   { "ellisonleao/gruvbox.nvim" },
@@ -103,7 +105,23 @@ return {
           mason = false,
         },
         gleam = {},
-        golangci_lint_ls = {},
+        golangci_lint_ls = {
+          cmd = { "golangci-lint-langserver" },
+          root_dir = lspconfig.util.root_pattern(
+            ".git",
+            "go.mod"
+          ),
+          init_options = {
+            command = {
+              "golangci-lint",
+              "run",
+              "--output.json.path",
+              "stdout",
+              "--show-stats=false",
+              "--issues-exit-code=1",
+            },
+          },
+        },
       },
       setup = {
         -- example to setup with typescript.nvim
