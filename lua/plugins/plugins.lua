@@ -103,14 +103,7 @@ return {
           mason = false,
         },
         gleam = {},
-        golangci_lint_ls = {
-          cmd = {
-            "golangci-lint",
-            "run",
-            "--out-format",
-            "json",
-          },
-        },
+        golangci_lint_ls = {},
       },
       setup = {
         -- example to setup with typescript.nvim
