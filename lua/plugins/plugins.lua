@@ -105,23 +105,6 @@ return {
           mason = false,
         },
         gleam = {},
-        golangci_lint_ls = {
-          cmd = { "golangci-lint-langserver" },
-          root_dir = lspconfig.util.root_pattern(
-            ".git",
-            "go.mod"
-          ),
-          init_options = {
-            command = {
-              "golangci-lint",
-              "run",
-              "--output.json.path",
-              "stdout",
-              "--show-stats=false",
-              "--issues-exit-code=1",
-            },
-          },
-        },
       },
       setup = {
         -- example to setup with typescript.nvim
@@ -210,7 +193,7 @@ return {
 
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "stylua",
