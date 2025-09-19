@@ -53,7 +53,6 @@ return {
 
   -- Golang functions
   "ray-x/go.nvim",
-  "fatih/vim-go",
 
   -- Git
   {
