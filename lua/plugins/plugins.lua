@@ -53,7 +53,7 @@ return {
 
   -- Golang functions
   "ray-x/go.nvim",
-
+  "fatih/vim-go",
   -- Git
   {
     "akinsho/git-conflict.nvim",
@@ -99,10 +99,6 @@ return {
         zls = {},
         postgres_lsp = {},
         marksman = {},
-        ocamllsp = {
-          cmd = { "ocamllsp" },
-          mason = false,
-        },
         gleam = {},
       },
       setup = {
@@ -138,6 +134,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
+      highlight = { enable = true },
       ensure_installed = {
         "bash",
         "html",
