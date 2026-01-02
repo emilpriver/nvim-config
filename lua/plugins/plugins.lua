@@ -22,6 +22,12 @@ return {
   },
 
   {
+    "mrcjkb/rustaceanvim",
+    version = "^6",
+    lazy = false,
+  },
+
+  {
     "snacks.nvim",
     opts = {
       scroll = { enabled = false },
