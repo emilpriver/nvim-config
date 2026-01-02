@@ -98,7 +98,6 @@ return {
       ---@type lspconfig.options
       servers = {
         pyright = {},
-        rust_analyzer = {},
         terraformls = {},
         gopls = {},
         tsserver = {},
