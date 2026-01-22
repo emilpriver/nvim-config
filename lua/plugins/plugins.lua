@@ -25,6 +25,24 @@ return {
     "mrcjkb/rustaceanvim",
     version = "^6",
     lazy = false,
+    config = function()
+      vim.g.rustaceanvim = {
+        server = {
+          default_settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                buildScripts = {
+                  enable = true,
+                },
+              },
+              procMacro = {
+                enable = true,
+              },
+            },
+          },
+        },
+      }
+    end,
   },
 
   {
