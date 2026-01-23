@@ -32,9 +32,11 @@ return {
             ["rust-analyzer"] = {
               cargo = {
                 buildScripts = {
+                  allFeatures = true,
                   enable = true,
                 },
               },
+              loadOutDirsFromCheck = true,
               procMacro = {
                 enable = true,
               },
