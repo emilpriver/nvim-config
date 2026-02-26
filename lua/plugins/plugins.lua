@@ -32,14 +32,14 @@ return {
             ["rust-analyzer"] = {
               checkOnSave = true,
               check = {
-                command = "clippy",
+                command = "check",
               },
               diagnostics = {
                 enable = true,
               },
               cargo = {
-                allFeatures = true,
-                loadOutDirsFromCheck = true,
+                allFeatures = false,
+                loadOutDirsFromCheck = false,
               },
               procMacro = {
                 enable = true,
