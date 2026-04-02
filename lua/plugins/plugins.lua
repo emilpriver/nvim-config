@@ -117,7 +117,7 @@ return {
     lazy = false,
     keys = {
       { "ff", function() require('fff').find_files() end, desc = "FFFind files" },
-      { "fg", function() require('fff').live_grep() end, desc = "LiFFFe grep" },
+      { "sg", function() require('fff').live_grep() end, desc = "LiFFFe grep" },
       {
         "fz",
         function() require('fff').live_grep({ grep = { modes = { "fuzzy", "plain" } } }) end,
@@ -366,23 +366,7 @@ return {
     end,
   },
 
-  {
-    enabled = true,
-    "sourcegraph/sg.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-      {
-        "<leader>cs",
-        "<cmd>SourcegraphSearch<cr>",
-        desc = "Sourcegraph search",
-      },
-    },
-    config = function()
-      require("sg").setup({})
-    end,
-  },
+  
 
   {
     "ocaml/vim-ocaml",
