@@ -116,16 +116,36 @@ return {
     end,
     lazy = false,
     keys = {
-      { "ff", function() require('fff').find_files() end, desc = "FFFind files" },
-      { "sg", function() require('fff').live_grep() end, desc = "LiFFFe grep" },
+      {
+        "ff",
+        function()
+          require("fff").find_files()
+        end,
+        desc = "FFFind files",
+      },
+      {
+        "sg",
+        function()
+          require("fff").live_grep()
+        end,
+        desc = "LiFFFe grep",
+      },
       {
         "fz",
-        function() require('fff').live_grep({ grep = { modes = { "fuzzy", "plain" } } }) end,
+        function()
+          require("fff").live_grep({
+            grep = { modes = { "fuzzy", "plain" } },
+          })
+        end,
         desc = "Live fuzzy grep",
       },
       {
         "fc",
-        function() require('fff').live_grep({ query = vim.fn.expand("<cword>") }) end,
+        function()
+          require("fff").live_grep({
+            query = vim.fn.expand("<cword>"),
+          })
+        end,
         desc = "Search current word",
       },
     },
@@ -366,8 +386,6 @@ return {
     end,
   },
 
-  
-
   {
     "ocaml/vim-ocaml",
   },
@@ -380,28 +398,28 @@ return {
 
   "shaunsingh/nord.nvim",
 
-  {
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-      {
-        "kristijanhusak/vim-dadbod-completion",
-        ft = { "sql", "mysql", "plsql" },
-        lazy = true,
-      },
-    },
-    cmd = {
-      "DBUI",
-      "DBUIToggle",
-      "DBUIAddConnection",
-      "DBUIFindBuffer",
-    },
-    init = function()
-      -- Your DBUI configuration
-      vim.g.db_ui_use_nerd_fonts = 1
-    end,
-  },
-
+  -- {
+  --   "kristijanhusak/vim-dadbod-ui",
+  --   dependencies = {
+  --     { "tpope/vim-dadbod", lazy = true },
+  --     {
+  --       "kristijanhusak/vim-dadbod-completion",
+  --       ft = { "sql", "mysql", "plsql" },
+  --       lazy = true,
+  --     },
+  --   },
+  --   cmd = {
+  --     "DBUI",
+  --     "DBUIToggle",
+  --     "DBUIAddConnection",
+  --     "DBUIFindBuffer",
+  --   },
+  --   init = function()
+  --     -- Your DBUI configuration
+  --     vim.g.db_ui_use_nerd_fonts = 1
+  --   end,
+  -- },
+  --
   "othree/html5.vim",
   "pangloss/vim-javascript",
   "evanleck/vim-svelte",
@@ -431,5 +449,88 @@ return {
       "nvim-lua/plenary.nvim",
     },
     config = true,
+  },
+
+  {
+    "alex35mil/pi.nvim",
+    dependencies = { "HakonHarnes/img-clip.nvim" },
+    opts = {
+      diff = {
+        keys = {
+          accept = "<Leader>da",
+          reject = "<Leader>dr",
+          expand_context = "<Leader>de",
+          shrink_context = "<Leader>ds",
+        },
+      },
+      zen = {
+        keys = {
+          toggle = { "<M-z>", modes = { "n", "i" } },
+          exit = { { "<Esc>", modes = "n" } },
+        },
+      },
+    },
+    keys = {
+      { "<Leader>pp", function() vim.cmd("Pi layout=side") end, desc = "Pi side", mode = { "n", "v" } },
+      { "<Leader>pf", function() vim.cmd("Pi layout=float") end, desc = "Pi float", mode = { "n", "v" } },
+      { "<Leader>pl", "<Cmd>PiToggleLayout<CR>", desc = "Pi toggle layout", mode = { "n", "v" } },
+      { "<Leader>pc", "<Cmd>PiContinue<CR>", desc = "Pi continue last session", mode = { "n", "v" } },
+      { "<Leader>pr", "<Cmd>PiResume<CR>", desc = "Pi resume past session", mode = { "n", "v" } },
+      { "<Leader>pm", "<Cmd>PiSendMention<CR>", desc = "Pi mention file/selection", mode = { "n", "v" } },
+      { "<Leader>pa", "<Cmd>PiAttention<CR>", desc = "Pi open next attention request", mode = { "n", "v" } },
+    },
+    config = function(_, opts)
+      local pi = require("pi")
+      pi.setup(opts)
+
+      local group = vim.api.nvim_create_augroup("pi-keymaps", { clear = true })
+      local function map(buf, key, action, modes)
+        vim.keymap.set(modes or { "n", "i", "v" }, key, action, { buffer = buf })
+      end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = { "pi-chat-history", "pi-chat-prompt", "pi-chat-attachments" },
+        callback = function(event)
+          map(event.buf, "<C-q>", "<Cmd>PiToggleChat<CR>")
+          map(event.buf, "<M-c>", "<Cmd>PiAbort<CR>")
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "pi-chat-history",
+        callback = function(event)
+          map(event.buf, "<S-Down>", pi.focus_chat_prompt)
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "pi-chat-prompt",
+        callback = function(event)
+          map(event.buf, "<S-Up>", pi.focus_chat_history)
+          map(event.buf, "<S-Down>", pi.focus_chat_attachments)
+          map(event.buf, "<C-Up>", function() pi.scroll_chat_history("up", 2) end)
+          map(event.buf, "<C-Down>", function() pi.scroll_chat_history("down", 2) end)
+          map(event.buf, "<M-m>", pi.cycle_model)
+          map(event.buf, "<M-M>", pi.select_model)
+          map(event.buf, "<M-t>", pi.cycle_thinking_level)
+          map(event.buf, "<M-T>", pi.select_thinking_level)
+          map(event.buf, "<M-n>", pi.new_session)
+          map(event.buf, "<M-x>", pi.compact)
+          map(event.buf, "<C-v>", pi.paste_image)
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = group,
+        pattern = "pi-chat-attachments",
+        callback = function(event)
+          map(event.buf, "<S-Up>", pi.focus_chat_prompt)
+          map(event.buf, "<C-v>", pi.paste_image)
+        end,
+      })
+    end,
   },
 }
