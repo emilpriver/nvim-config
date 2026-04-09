@@ -471,26 +471,95 @@ return {
       },
     },
     keys = {
-      { "<Leader>pp", function() vim.cmd("Pi layout=side") end, desc = "Pi side", mode = { "n", "v" } },
-      { "<Leader>pf", function() vim.cmd("Pi layout=float") end, desc = "Pi float", mode = { "n", "v" } },
-      { "<Leader>pl", "<Cmd>PiToggleLayout<CR>", desc = "Pi toggle layout", mode = { "n", "v" } },
-      { "<Leader>pc", "<Cmd>PiContinue<CR>", desc = "Pi continue last session", mode = { "n", "v" } },
-      { "<Leader>pr", "<Cmd>PiResume<CR>", desc = "Pi resume past session", mode = { "n", "v" } },
-      { "<Leader>pm", "<Cmd>PiSendMention<CR>", desc = "Pi mention file/selection", mode = { "n", "v" } },
-      { "<Leader>pa", "<Cmd>PiAttention<CR>", desc = "Pi open next attention request", mode = { "n", "v" } },
+      {
+        "<Leader>pp",
+        function()
+          vim.cmd("Pi layout=side")
+        end,
+        desc = "Pi side",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pf",
+        function()
+          vim.cmd("Pi layout=float")
+        end,
+        desc = "Pi float",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pl",
+        function()
+          vim.cmd("PiToggleLayout")
+        end,
+        desc = "Pi toggle layout",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pc",
+        function()
+          vim.cmd("PiContinue")
+        end,
+        desc = "Pi continue last session",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pr",
+        function()
+          vim.cmd("PiResume")
+        end,
+        desc = "Pi resume past session",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pm",
+        function()
+          vim.cmd("PiSendMention")
+        end,
+        desc = "Pi mention file/selection",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pa",
+        function()
+          vim.cmd("PiAttention")
+        end,
+        desc = "Pi open next attention request",
+        mode = { "n", "v" },
+      },
+      {
+        "<Leader>pq",
+        function()
+          vim.cmd("PiStop")
+        end,
+        desc = "Pi stop and close",
+        mode = { "n", "v" },
+      },
     },
     config = function(_, opts)
       local pi = require("pi")
       pi.setup(opts)
 
-      local group = vim.api.nvim_create_augroup("pi-keymaps", { clear = true })
+      local group = vim.api.nvim_create_augroup(
+        "pi-keymaps",
+        { clear = true }
+      )
       local function map(buf, key, action, modes)
-        vim.keymap.set(modes or { "n", "i", "v" }, key, action, { buffer = buf })
+        vim.keymap.set(
+          modes or { "n", "i", "v" },
+          key,
+          action,
+          { buffer = buf }
+        )
       end
 
       vim.api.nvim_create_autocmd("FileType", {
         group = group,
-        pattern = { "pi-chat-history", "pi-chat-prompt", "pi-chat-attachments" },
+        pattern = {
+          "pi-chat-history",
+          "pi-chat-prompt",
+          "pi-chat-attachments",
+        },
         callback = function(event)
           map(event.buf, "<C-q>", "<Cmd>PiToggleChat<CR>")
           map(event.buf, "<M-c>", "<Cmd>PiAbort<CR>")
@@ -510,9 +579,17 @@ return {
         pattern = "pi-chat-prompt",
         callback = function(event)
           map(event.buf, "<S-Up>", pi.focus_chat_history)
-          map(event.buf, "<S-Down>", pi.focus_chat_attachments)
-          map(event.buf, "<C-Up>", function() pi.scroll_chat_history("up", 2) end)
-          map(event.buf, "<C-Down>", function() pi.scroll_chat_history("down", 2) end)
+          map(
+            event.buf,
+            "<S-Down>",
+            pi.focus_chat_attachments
+          )
+          map(event.buf, "<C-Up>", function()
+            pi.scroll_chat_history("up", 2)
+          end)
+          map(event.buf, "<C-Down>", function()
+            pi.scroll_chat_history("down", 2)
+          end)
           map(event.buf, "<M-m>", pi.cycle_model)
           map(event.buf, "<M-M>", pi.select_model)
           map(event.buf, "<M-t>", pi.cycle_thinking_level)
@@ -520,6 +597,24 @@ return {
           map(event.buf, "<M-n>", pi.new_session)
           map(event.buf, "<M-x>", pi.compact)
           map(event.buf, "<C-v>", pi.paste_image)
+          
+          -- Tab to trigger completion for / commands
+          -- When typing /, Tab will show command completions
+          map(event.buf, "<Tab>", function()
+            local line = vim.api.nvim_get_current_line()
+            local col = vim.fn.col(".")
+            local cur_text = line:sub(1, col)
+            
+            -- If we're after a / on the first line, trigger pi completion
+            if vim.fn.line(".") == 1 and cur_text:match("^/") then
+              -- Use the native omnifunc for pi completions
+              local completefunc = require("pi.completion.omnifunc").completefunc
+              vim.fn.complete(col + 1, completefunc(0, "/"))
+            else
+              -- Otherwise let blink.cmp handle it normally
+              vim.cmd("execute \"normal! \\<Tab>\"")
+            end
+          end, { "i" })
         end,
       })
 
@@ -532,5 +627,21 @@ return {
         end,
       })
     end,
+  },
+
+  -- Configure blink.cmp for pi.nvim @mentions and /commands completion
+  {
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        default = { "pi" },
+        providers = {
+          pi = {
+            name = "Pi",
+            module = "pi.completion.blink",
+          },
+        },
+      },
+    },
   },
 }
