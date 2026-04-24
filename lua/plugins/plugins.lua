@@ -597,22 +597,26 @@ return {
           map(event.buf, "<M-n>", pi.new_session)
           map(event.buf, "<M-x>", pi.compact)
           map(event.buf, "<C-v>", pi.paste_image)
-          
+
           -- Tab to trigger completion for / commands
           -- When typing /, Tab will show command completions
           map(event.buf, "<Tab>", function()
             local line = vim.api.nvim_get_current_line()
             local col = vim.fn.col(".")
             local cur_text = line:sub(1, col)
-            
+
             -- If we're after a / on the first line, trigger pi completion
-            if vim.fn.line(".") == 1 and cur_text:match("^/") then
+            if
+              vim.fn.line(".") == 1 and cur_text:match("^/")
+            then
               -- Use the native omnifunc for pi completions
-              local completefunc = require("pi.completion.omnifunc").completefunc
+              local completefunc = require(
+                "pi.completion.omnifunc"
+              ).completefunc
               vim.fn.complete(col + 1, completefunc(0, "/"))
             else
               -- Otherwise let blink.cmp handle it normally
-              vim.cmd("execute \"normal! \\<Tab>\"")
+              vim.cmd('execute "normal! \\<Tab>"')
             end
           end, { "i" })
         end,
@@ -643,5 +647,17 @@ return {
         },
       },
     },
+  },
+
+  -- tua.nvim — local dev build of a native Neovim coding agent
+  {
+    dir = "/Users/emilpriver/code/tau.nvim",
+    name = "tau.nvim",
+    lazy = false,
+    config = function()
+      require("tau").setup({
+        plugins = { "plugin.opencode-go" },
+      })
+    end,
   },
 }

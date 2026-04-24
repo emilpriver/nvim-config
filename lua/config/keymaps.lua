@@ -7,24 +7,30 @@
 -- This file is automatically loaded by lazyvim.config.init
 --
 
-local bufopts = { noremap = true, silent = true, buffer = bufnr, desc = "Hover types" }
+local bufopts = {
+  noremap = true,
+  silent = true,
+  buffer = bufnr,
+  desc = "Hover types",
+}
 local wk = require("which-key")
 
 wk.register({
   t = {
-    name = "ChatGPT",
-    c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-    e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
-    g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
-    t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
-    k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
-    d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
-    a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
-    o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
-    s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
-    f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
-    x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
-    r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
-    l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+    name = "Tau",
+    p = {
+      "<cmd>Tau layout=side<CR>",
+      "Open tau side panel",
+    },
+    f = { "<cmd>Tau layout=float<CR>", "Open tau float" },
+    l = { "<cmd>TauToggle<CR>", "Toggle tau" },
+    c = { "<cmd>TauGoToChat<CR>", "Go to tau chat" },
+    h = { "<cmd>TauGoToHistory<CR>", "Go to tau history" },
+    r = { "<cmd>TauResume<CR>", "Resume past session" },
+    m = { "<cmd>TauModel<CR>", "Select model" },
+    a = { "<cmd>TauAbort<CR>", "Abort current turn" },
+    z = { "<cmd>TauZen<CR>", "Toggle zen mode" },
+    q = { "<cmd>TauClose<CR>", "Close tau chat" },
+    t = { "<cmd>TauToggleThinking<CR>", "Toggle thinking" },
   },
 }, { prefix = "<leader>" })
