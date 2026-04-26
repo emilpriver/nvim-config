@@ -97,6 +97,7 @@ return {
 
       -- 🔌 Default provider
       provider = "opencode",
+      model = "deepseek-v4-pro",
 
       input = {
         provider = "snacks",
@@ -114,7 +115,7 @@ return {
           },
         },
         cursor = {
-          command = "cursor-agent",
+          command = "agent",
           args = { "acp" },
           env = {
             CURSOR_API_KEY = os.getenv("CURSOR_API_KEY"),
@@ -126,7 +127,7 @@ return {
       providers = {
         opencode = {
           __inherited_from = "acp",
-          model = "minimax-m2.7",
+          model = "qwen3.6-plus",
         },
 
         cursor = {
