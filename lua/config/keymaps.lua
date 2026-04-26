@@ -7,30 +7,27 @@
 -- This file is automatically loaded by lazyvim.config.init
 --
 
-local bufopts = {
-  noremap = true,
-  silent = true,
-  buffer = bufnr,
-  desc = "Hover types",
-}
 local wk = require("which-key")
 
 wk.register({
-  t = {
-    name = "Tau",
-    p = {
-      "<cmd>Tau layout=side<CR>",
-      "Open tau side panel",
+  a = {
+    name = "Avante",
+    p = { "<cmd>AvanteAsk position=right<CR>", "Open avante side panel" },
+    f = { "<cmd>AvanteAsk position=float<CR>", "Open avante float" },
+    l = { "<cmd>AvanteToggle<CR>", "Toggle avante" },
+    c = { "<cmd>AvanteFocus<CR>", "Focus avante chat" },
+    h = { "<cmd>AvanteHistory<CR>", "Avante chat history" },
+    r = { "<cmd>AvanteChat<CR>", "Resume/open avante" },
+    k = { "<cmd>AvanteSwitchProvider<CR>", "Select avante provider" },
+    a = { "<cmd>AvanteStop<CR>", "Abort current avante turn" },
+    q = {
+      "<cmd>AvanteToggle<CR>",
+      "Close avante chat",
     },
-    f = { "<cmd>Tau layout=float<CR>", "Open tau float" },
-    l = { "<cmd>TauToggle<CR>", "Toggle tau" },
-    c = { "<cmd>TauGoToChat<CR>", "Go to tau chat" },
-    h = { "<cmd>TauGoToHistory<CR>", "Go to tau history" },
-    r = { "<cmd>TauResume<CR>", "Resume past session" },
-    m = { "<cmd>TauModel<CR>", "Select model" },
-    a = { "<cmd>TauAbort<CR>", "Abort current turn" },
-    z = { "<cmd>TauZen<CR>", "Toggle zen mode" },
-    q = { "<cmd>TauClose<CR>", "Close tau chat" },
-    t = { "<cmd>TauToggleThinking<CR>", "Toggle thinking" },
+    n = {
+      "<cmd>AvanteChatNew<CR>",
+      "New avante chat",
+    },
   },
-}, { prefix = "<leader>" })
+}, { prefix = "<leader>", mode = { "n", "x" } })
+
