@@ -1,4 +1,5 @@
 return {
+  -- 🧠 Completion (blink + avante source)
   {
     "saghen/blink.cmp",
     dependencies = {
@@ -23,17 +24,85 @@ return {
     },
   },
 
+  -- 🤖 Avante (AI)
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false,
+
+    -- 🔑 Keymaps (auto which-key integration)
+    keys = {
+      { "<leader>a", group = "Avante" },
+
+      -- UI
+      {
+        "<leader>ap",
+        "<cmd>AvanteAsk position=right<CR>",
+        desc = "Side panel",
+      },
+      {
+        "<leader>af",
+        "<cmd>AvanteAsk position=float<CR>",
+        desc = "Floating window",
+      },
+      {
+        "<leader>al",
+        "<cmd>AvanteToggle<CR>",
+        desc = "Toggle panel",
+      },
+      {
+        "<leader>aq",
+        "<cmd>AvanteToggle<CR>",
+        desc = "Close panel",
+      },
+
+      -- Chat lifecycle
+      {
+        "<leader>ar",
+        "<cmd>AvanteChat<CR>",
+        desc = "Resume chat",
+      },
+      {
+        "<leader>an",
+        "<cmd>AvanteChatNew<CR>",
+        desc = "New chat",
+      },
+      {
+        "<leader>ac",
+        "<cmd>AvanteFocus<CR>",
+        desc = "Focus chat",
+      },
+      {
+        "<leader>ah",
+        "<cmd>AvanteHistory<CR>",
+        desc = "Chat history",
+      },
+      {
+        "<leader>aa",
+        "<cmd>AvanteStop<CR>",
+        desc = "Abort response",
+      },
+
+      -- AI config
+      {
+        "<leader>ak",
+        "<cmd>AvanteSwitchProvider<CR>",
+        desc = "Switch provider",
+      },
+    },
+
     opts = {
       debug = false,
       instructions_file = "avante.md",
+
+      -- 🔌 Default provider
       provider = "opencode",
+
       input = {
         provider = "snacks",
       },
+
+      -- ⚙️ ACP backends
       acp_providers = {
         opencode = {
           command = "opencode",
@@ -52,8 +121,21 @@ return {
           },
         },
       },
-      providers = {},
+
+      -- 🧠 Providers + models
+      providers = {
+        opencode = {
+          __inherited_from = "acp",
+          model = "minimax-m2.7",
+        },
+
+        cursor = {
+          __inherited_from = "acp",
+          model = "composer-2-fast",
+        },
+      },
     },
+
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -65,6 +147,7 @@ return {
       "folke/snacks.nvim",
       "nvim-tree/nvim-web-devicons",
       "zbirenbaum/copilot.lua",
+
       {
         "HakonHarnes/img-clip.nvim",
         event = "VeryLazy",
@@ -79,12 +162,13 @@ return {
           },
         },
       },
+
       {
         "MeanderingProgrammer/render-markdown.nvim",
+        ft = { "markdown", "Avante" },
         opts = {
           file_types = { "markdown", "Avante" },
         },
-        ft = { "markdown", "Avante" },
       },
     },
   },
