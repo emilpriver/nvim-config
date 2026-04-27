@@ -41,6 +41,8 @@ return {
       { "<leader>an", "<cmd>AvanteChatNew<CR>", desc = "New chat" },
       { "<leader>ac", "<cmd>AvanteFocus<CR>", desc = "Focus chat" },
       { "<leader>ah", "<cmd>AvanteHistory<CR>", desc = "Chat history" },
+      { "<leader>ab", function() require("avante.api").add_selected_file(vim.api.nvim_buf_get_name(0)) end, desc = "Add current buffer" },
+      { "<leader>aB", function() require("avante.api").add_buffer_files() end, desc = "Add all buffers" },
       { "<leader>ax", "<cmd>AvanteStop<CR>", desc = "Abort response" },
       { "<leader>ak", "<cmd>AvanteSwitchProvider<CR>", desc = "Switch provider" },
       { "<leader>aM", function()
