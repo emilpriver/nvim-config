@@ -30,6 +30,31 @@ return {
     event = "VeryLazy",
     version = false,
 
+    keys = {
+      { "<leader>aa", function() require("avante.api").ask() end, desc = "Ask", mode = { "n", "v" } },
+      { "<leader>ae", function() require("avante.api").edit() end, desc = "Edit", mode = { "n", "v" } },
+      { "<leader>ar", function() require("avante.api").refresh() end, desc = "Refresh" },
+      { "<leader>ap", "<cmd>AvanteAsk position=right<CR>", desc = "Side panel" },
+      { "<leader>al", "<cmd>AvanteToggle<CR>", desc = "Toggle panel" },
+      { "<leader>aq", "<cmd>AvanteToggle<CR>", desc = "Close panel" },
+      { "<leader>aC", "<cmd>AvanteChat<CR>", desc = "Resume chat" },
+      { "<leader>an", "<cmd>AvanteChatNew<CR>", desc = "New chat" },
+      { "<leader>ac", "<cmd>AvanteFocus<CR>", desc = "Focus chat" },
+      { "<leader>ah", "<cmd>AvanteHistory<CR>", desc = "Chat history" },
+      { "<leader>ax", "<cmd>AvanteStop<CR>", desc = "Abort response" },
+      { "<leader>ak", "<cmd>AvanteSwitchProvider<CR>", desc = "Switch provider" },
+      { "<leader>aM", function()
+        local avante = require("avante")
+        local sidebar = avante.get()
+        if not sidebar or not sidebar:is_open() then
+          avante.toggle()
+        end
+        vim.defer_fn(function()
+          vim.cmd("AvanteACPModels")
+        end, 300)
+      end, desc = "Select ACP model" },
+    },
+
     opts = {
       debug = false,
       instructions_file = "avante.md",
