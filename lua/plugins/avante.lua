@@ -147,6 +147,7 @@ return {
       "folke/snacks.nvim",
       "nvim-tree/nvim-web-devicons",
       "zbirenbaum/copilot.lua",
+      "ibhagwan/fzf-lua",
 
       {
         "HakonHarnes/img-clip.nvim",
