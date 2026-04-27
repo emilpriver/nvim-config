@@ -30,70 +30,13 @@ return {
     event = "VeryLazy",
     version = false,
 
-    -- 🔑 Keymaps (auto which-key integration)
-    keys = {
-      { "<leader>a", group = "Avante" },
-
-      -- UI
-      {
-        "<leader>ap",
-        "<cmd>AvanteAsk position=right<CR>",
-        desc = "Side panel",
-      },
-      {
-        "<leader>af",
-        "<cmd>AvanteAsk position=float<CR>",
-        desc = "Floating window",
-      },
-      {
-        "<leader>al",
-        "<cmd>AvanteToggle<CR>",
-        desc = "Toggle panel",
-      },
-      {
-        "<leader>aq",
-        "<cmd>AvanteToggle<CR>",
-        desc = "Close panel",
-      },
-
-      -- Chat lifecycle
-      {
-        "<leader>ar",
-        "<cmd>AvanteChat<CR>",
-        desc = "Resume chat",
-      },
-      {
-        "<leader>an",
-        "<cmd>AvanteChatNew<CR>",
-        desc = "New chat",
-      },
-      {
-        "<leader>ac",
-        "<cmd>AvanteFocus<CR>",
-        desc = "Focus chat",
-      },
-      {
-        "<leader>ah",
-        "<cmd>AvanteHistory<CR>",
-        desc = "Chat history",
-      },
-      {
-        "<leader>aa",
-        "<cmd>AvanteStop<CR>",
-        desc = "Abort response",
-      },
-
-      -- AI config
-      {
-        "<leader>ak",
-        "<cmd>AvanteSwitchProvider<CR>",
-        desc = "Switch provider",
-      },
-    },
-
     opts = {
       debug = false,
       instructions_file = "avante.md",
+
+      behaviour = {
+        auto_set_keymaps = false,
+      },
 
       -- 🔌 Default provider
       provider = "opencode",
